@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apc-service
+spec:
+  selector:
+    app: apc-simulator
+    deploy-type: production
+  ports:
+    - port: 3031

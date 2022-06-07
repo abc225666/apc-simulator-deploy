@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apc-simulator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apc-simulator
+  template:
+    metadata:
+      labels:
+        app: apc-simulator
+    spec:
+      containers:
+        - name: apc-simulator
+          image: abc225666/cnd-project:testv3
+          ports:
+            - containerPort: 3030
+            - containerPort: 3031
+          env:
+            - name: PORT
+              value: '3030'
+            - name: NATS_SERVICE_CONNECTION
+              value: 'canary-nats-server:4222'
+            - name: APC_ENDPOINT
+              value: 'http://apc-service:3031'
+            - name: MONGODB_CONNECTION
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: mongodb_canary_connection

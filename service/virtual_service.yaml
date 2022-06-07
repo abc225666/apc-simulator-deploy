@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: apc-service
+spec:
+  hosts:
+  - apc-service
+  http:
+  - route:
+    - destination:
+        host: production-apc-service
+        port:
+          number: 3031
+      weight: 0
+    - destination:
+        host: canary-apc-service
+        port:
+          number: 3031
+      weight: 100
