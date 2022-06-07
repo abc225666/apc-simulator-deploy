@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: apc-simulator
-          image: abc225666/cnd-project:testv3
+          image: abc225666/cnd-project:v4.1
           ports:
             - containerPort: 3030
             - containerPort: 3031
